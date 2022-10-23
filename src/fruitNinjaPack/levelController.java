@@ -15,6 +15,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.Node;
 
 
 public class levelController  {
@@ -210,6 +215,7 @@ public void click() {
 }
 
 public void SliceObject(Event event) {
+	Parent root = FXMLLoader.load(getClass().getResource("/fruitNinjaPack/FXMLFILES/GameMainMenu.fxml"));
 	System.out.println(player.getLives());
 	//player.setScore(fruit.getScore()+Integer.parseInt(score.getText()));
 	player.setLives(player.getLives()+fruit.getDanger());
@@ -247,6 +253,10 @@ public void SliceObject(Event event) {
 		live1.setVisible(false);
 		live2.setVisible(false);
 		live3.setVisible(false);
+		Scene userScene = new Scene(root);
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		window.setScene(userScene);
+		window.show();
 		System.out.println("you lose");
 	}
 	//score.setText(player.getScore()+"");
